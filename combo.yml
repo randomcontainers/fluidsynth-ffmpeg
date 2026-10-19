@@ -1,0 +1,5 @@
+# Generated from the combos section of randomcontainers/fluidsynth package.yml by randomcontainers/ci.
+# Do not edit; change package.yml in randomcontainers/fluidsynth instead.
+name: fluidsynth-ffmpeg
+owner: fluidsynth
+with: [ffmpeg]
