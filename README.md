@@ -58,7 +58,16 @@ gh attestation verify oci://ghcr.io/randomcontainers/fluidsynth-ffmpeg:latest \
   --repo randomcontainers/fluidsynth-ffmpeg --signer-repo randomcontainers/ci
 ```
 
-Images from `ghcr.io/randomcontainers/fluidsynth` are built in [randomcontainers/fluidsynth](https://github.com/randomcontainers/fluidsynth), so verify them with `--repo randomcontainers/fluidsynth --signer-repo randomcontainers/ci`.
+Each image also has a keyless cosign signature from the same workflow, for admission controllers that check cosign signatures:
+
+```sh
+cosign verify ghcr.io/randomcontainers/fluidsynth-ffmpeg:latest \
+  --certificate-identity https://github.com/randomcontainers/ci/.github/workflows/build.yml@refs/tags/v1 \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --certificate-github-workflow-repository randomcontainers/fluidsynth-ffmpeg
+```
+
+Images from `ghcr.io/randomcontainers/fluidsynth` are built in [randomcontainers/fluidsynth](https://github.com/randomcontainers/fluidsynth), so name that repository in `--repo` and `--certificate-github-workflow-repository`.
 
 ## Updates
 
